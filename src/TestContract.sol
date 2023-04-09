@@ -35,11 +35,6 @@ contract TestContract {
         uint256[] memory countAfter,
         uint256 changeTolerance
     ) internal view {
-        console.log(
-            "countBefore: %s, countAfter: %s ",
-            countBefore.length,
-            countAfter.length
-        );
         for (uint i = 0; i < countBefore.length; i++) {
             if (countBefore[i] == UINT256_MAX && countAfter[i] == UINT256_MAX) {
                 continue;
@@ -49,7 +44,7 @@ contract TestContract {
                     countAfter[i] * 100_00 &&
                     countBefore[i] * (100_00 - changeTolerance) <=
                     countAfter[i] * 100_00),
-                "Health factor chagned more than set tolerance present"
+                "Health factor chagned more than the set tolerance present"
             );
         }
     }
