@@ -8,8 +8,6 @@ import {IPool} from "aave-address-book/AaveV3.sol";
 
 import {AaveV3Ethereum, AaveV3EthereumAssets} from "aave-address-book/AaveV3Ethereum.sol";
 
-// uint256 constant UINT256_MAX = 115792089237316195423570985008687907853269984665640564039457584007913129639935;
-
 contract TestContract is Test {
     function _testBorrowrsHealth(
         IPool pool
@@ -35,18 +33,18 @@ contract TestContract is Test {
     function validateBorrowersHealth(
         uint256[] memory countBefore,
         uint256[] memory countAfter,
-        uint256 changeTolerance
+        uint256 changeTolerancePercentage
     ) internal view {
         for (uint i = 0; i < countBefore.length; i++) {
             if (countBefore[i] == UINT256_MAX && countAfter[i] == UINT256_MAX) {
                 continue;
             }
             require(
-                (countBefore[i] * (100_00 + changeTolerance) >=
+                (countBefore[i] * (100_00 + changeTolerancePercentage) >=
                     countAfter[i] * 100_00 &&
-                    countBefore[i] * (100_00 - changeTolerance) <=
+                    countBefore[i] * (100_00 - changeTolerancePercentage) <=
                     countAfter[i] * 100_00),
-                "Health factor chagned more than the set tolerance present"
+                "Health factor chagned more than the set tolerance percentage"
             );
         }
     }

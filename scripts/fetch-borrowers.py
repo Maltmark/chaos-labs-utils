@@ -8,6 +8,13 @@ path, _ = os.path.split(os.path.realpath(__file__))
 BORROWERS_PATH = f"{path}/../src/borrowers.sol"
 
 chain = str(sys.argv[1])
+fetch_by_block_number = ""
+
+try:
+    block_number = sys.argv[2]
+    fetch_by_block_number = f", where: {{_change_block: {{ number_gte: {block_number}}}}}"
+except:
+    pass
 
 AAVE_GRAPH_URLS = {
     "polygon": "https://api.thegraph.com/subgraphs/name/ronlv10/aave-v3-polygon",
@@ -21,19 +28,18 @@ print(f"start fetching borrowers from chain {chain}")
 
 addresses = []
 
-aave_top_account_per_reserve = """  {pools{
-    reserves{
+aave_top_account_per_reserve = f"""  {{pools{{
+    reserves{{
       symbol
-      userReserves(first:5, orderBy: currentATokenBalance, orderDirection: desc){
-        user{
+      userReserves(first:5, orderBy: currentATokenBalance, orderDirection: desc, {fetch_by_block_number}){{
+        user{{
           id
-        }
-      }
-    }
-  }
-  }
+        }}
+      }}
+    }}
+  }}
+  }}
      """
-
 
 response = requests.post(
     AAVE_GRAPH_URLS[chain], json={"query": aave_top_account_per_reserve}, )
@@ -72,4 +78,5 @@ with open(BORROWERS_PATH, 'w') as f:
       """
     f.write(template)
 
+os.system("npx prettier --write src/*")
 print(f"update borrowers in: {BORROWERS_PATH}")
