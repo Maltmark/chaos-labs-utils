@@ -22,7 +22,7 @@ print(os.path.dirname(full_path))
 dir_path = os.path.dirname(os.path.realpath(__file__))
 print(dir_path)
 
-BORROWERS_PATH = "./borrowers.sol"
+BORROWERS_PATH = f"{path}/../src/borrowers.sol"
 
 chain = str(sys.argv[1])
 
