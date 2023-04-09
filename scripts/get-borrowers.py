@@ -1,7 +1,10 @@
 import sys
 import requests
+import os
 
-BORROWERS_PATH = "./borrowers.sol"
+cwd = os.getcwd()
+
+BORROWERS_PATH = f"{cwd}/borrowers.sol"
 
 chain = str(sys.argv[1])
 
