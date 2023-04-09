@@ -1,7 +1,7 @@
 import sys
 import requests
 
-BORROWERS_PATH = "src/borrowers.sol"
+BORROWERS_PATH = "./borrowers.sol"
 
 chain = str(sys.argv[1])
 
