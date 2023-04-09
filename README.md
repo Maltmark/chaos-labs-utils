@@ -1,9 +1,9 @@
 # How to use 
 
 ## Python script
-run: 'py3 fetch-borrowers.py {chain_name} {block_number?}'
+run: ```py3 fetch-borrowers.py {chain_name} {block_number?}```
 
-chain_name - The name of the chain from this supported list: [polygon, avalanche, arbitrum, optimism, ethereum]
+chain_name - The name of the chain from this supported list: ```[polygon, avalanche, arbitrum, optimism, ethereum]```
 
 block_number - this is an optional, if not pass the borrowers from the latest block will be fetched.
 
