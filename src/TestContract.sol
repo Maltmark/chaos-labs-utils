@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.16;
 import "forge-std/console.sol";
+import "forge-std/Test.sol";
 
 import {Constants} from "./borrowers.sol";
 import {IPool} from "aave-address-book/AaveV3.sol";
+
 import {AaveV3Ethereum, AaveV3EthereumAssets} from "aave-address-book/AaveV3Ethereum.sol";
 
-uint256 constant UINT256_MAX = 115792089237316195423570985008687907853269984665640564039457584007913129639935;
+// uint256 constant UINT256_MAX = 115792089237316195423570985008687907853269984665640564039457584007913129639935;
 
-contract TestContract {
+contract TestContract is Test {
     function _testBorrowrsHealth(
         IPool pool
     ) internal returns (uint256[] memory) {
